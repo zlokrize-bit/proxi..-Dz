@@ -19,6 +19,12 @@ jobs:
           distribution: temurin
           java-version: 17
 
+      - name: Find sdkmanager and set PATH
+        run: |
+          SDKMANAGER_PATH=$(find $ANDROID_HOME -name "sdkmanager" -type f | head -n 1)
+          echo "Found: $SDKMANAGER_PATH"
+          echo "$(dirname $SDKMANAGER_PATH)" >> $GITHUB_PATH
+
       - name: Accept Android SDK licenses
         run: yes | sdkmanager --licenses || true
 
