@@ -46,3 +46,11 @@ jobs:
         with:
           name: kataloni-apk
           path: kataloni/app/build/outputs/apk/debug/app-debug.apk
+            - name: Add AndroidX properties
+        run: |
+          echo "android.useAndroidX=true" >> kataloni/gradle.properties
+          echo "android.nonTransitiveRClass=true" >> kataloni/gradle.properties
+
+      - name: Fix missing app namespace in layout
+        run: |
+          sed -i 's|xmlns:android="http://schemas.android.com/apk/res/android">|xmlns:android="http://schemas.android.com/apk/res/android"\n    xmlns:app="http://schemas.android.com/apk/res-auto">|' kataloni/app/src/main/res/layout/activity_main.xml
