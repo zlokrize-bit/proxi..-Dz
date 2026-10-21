@@ -14,6 +14,11 @@ jobs:
       - name: Unzip project
         run: unzip -o kataloni_project.zip
 
+      - name: Add AndroidX properties
+        run: |
+          echo "android.useAndroidX=true" >> kataloni/gradle.properties
+          echo "android.nonTransitiveRClass=true" >> kataloni/gradle.properties
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
