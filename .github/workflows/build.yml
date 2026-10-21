@@ -22,7 +22,6 @@ jobs:
       - name: Find sdkmanager and set PATH
         run: |
           SDKMANAGER_PATH=$(find $ANDROID_HOME -name "sdkmanager" -type f | head -n 1)
-          echo "Found: $SDKMANAGER_PATH"
           echo "$(dirname $SDKMANAGER_PATH)" >> $GITHUB_PATH
 
       - name: Accept Android SDK licenses
@@ -34,7 +33,7 @@ jobs:
       - name: Build debug APK
         working-directory: kataloni
         run: |
-          gradle wrapper --gradle-version 8.5
+          gradle wrapper --gradle-version 8.7
           ./gradlew assembleDebug
 
       - name: Upload APK
